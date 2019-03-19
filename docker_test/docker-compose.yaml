@@ -1,0 +1,25 @@
+version: '2'
+services:
+  postgres:
+    image: postgres:9.6
+    restart: always
+    environment:
+      - POSTGRES_USER=airflow
+      - POSTGRES_PASSWORD=airflow
+      - POSTGRES_DB=airflow
+  webserver:
+    image: puckel/docker-airflow
+    container_name: airflow_test
+    volumes:
+      - ../local_test/dags:/usr/local/airflow/dags
+    restart: always
+    depends_on:
+      - postgres
+    environment:
+      - LOAD_EX=n
+      - FERNET_KEY="bSgx4ZAaKBZIZW-l85xyX_qJrt_dBdg9mvxzccaLWUo="
+      - AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION=false
+      - EXECUTOR=Local
+    ports:
+      - "8080:8080"
+    command: "webserver"
