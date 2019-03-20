@@ -11,7 +11,7 @@ services:
     image: puckel/docker-airflow
     container_name: airflow_test
     volumes:
-      - ../local_test/dags:/usr/local/airflow/dags
+      - ../dags:/usr/local/airflow/dags
     restart: always
     depends_on:
       - postgres
