@@ -3,3 +3,4 @@ airflow-web*
 airflow.db
 airflow.cfg
 unittests.cfg
+logs/

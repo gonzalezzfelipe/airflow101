@@ -7,4 +7,4 @@ export AIRFLOW__CORE__LOAD_EXAMPLES=False
 
 airflow initdb
 airflow scheduler & \
-airflow webserver -p 8080 -D
+airflow webserver -p 8080

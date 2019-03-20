@@ -3,7 +3,7 @@ import datetime as dt
 from airflow import DAG
 
 from operators.today_operator import TodayOperator
-from sensors.prime_minute_sensor import PrimeMinuteSensor
+from sensors.even_minute_sensor import EvenMinuteSensor
 
 dag = DAG(
     dag_id='test_custom_sensor_and_operator',
@@ -12,8 +12,8 @@ dag = DAG(
     catchup=True)
 
 with dag:
-    sense = PrimeMinuteSensor(
-        task_id='check_minute_for_prime_number',
+    sense = EvenMinuteSensor(
+        task_id='check_minute_for_even_number',
         poke_interval=60,
         timeout=60 * 60)
     execute = TodayOperator(task_id='print_now_and_execution_date')
